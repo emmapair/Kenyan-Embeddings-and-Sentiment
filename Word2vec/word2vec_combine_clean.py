@@ -69,25 +69,6 @@ words = [nltk.word_tokenize(sent) for sent in sentences]
 print(words[:50])
 
 
-# Removing Stop Words and words from html
-#print ("Removing stop words...")
-#from nltk.corpus import stopwords
-#stopwords = stopwords.words('english')
-#print(stopwords)
-#stopwords.extend(["p","mp","msonormal","strong","class","noprint","font","size","sh","img","alt","q","image","view","pic","jpg","th","em","br","k","w","g","v","also","fc","r","e","f","h","el","es","b","nstronger", "n"])
-#stopwords.remove('she')
-#stopwords.remove('hers')
-#stopwords.remove('her')
-#stopwords.remove('herself')
-#stopwords.remove('he')
-#stopwords.remove('his')
-#stopwords.remove('him')
-#stopwords.remove('himself')
-                 
-#for i in range(len(words)):
-#    words[i] = [w for w in words[i] if w not in stopwords]
-#print(words[:50])
-
 ## Creating a cleaned output file
 print ("Creating cleaned text file...")
 #out_cleaned_filename = "daily_nation_" + str(title) + "_" + str(startyr) +"_" + str(endyr) + "_cleaned_fin.txt" # Name output file
@@ -98,20 +79,12 @@ f.close()
 
 ### First try at word2vec
 word2vec = gensim.models.Word2Vec(words, min_count=5, window = 15, size = 150)
-#svd2vec = svd2vec(words, size=150, window=15, min_count=5, verbose=False)
-#save_as_svd = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + str(endyr) + "_vectors_svd.txt"
-#save_as_1 = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + str(endyr) + "_vectors_check.txt"
-#save_as_2 = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + str(endyr) + "_vectors_check.bin"
-#vocab = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + str(endyr) + "_vocab_check.txt"
 save_as_1 = "daily_nation_" + str(title) + "_" + str(startyr) + "_vectors_check.txt"
 save_as_2 = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + "_vectors_check.bin"
 vocab = "daily_nation_" + str(title) + "_" + str(startyr) + "_" + "_vocab_check.txt"
-#svd2vec.save_word2vec_format(save_as_svd)
 word2vec.wv.save_word2vec_format(save_as_1, binary = False, fvocab = vocab)
 word2vec.wv.save_word2vec_format(save_as_2, binary = True)
-#word2vec.save("word2vec_1")
 vocabulary = word2vec.wv.vocab
-#print("Vectors: ")
 #print(vocabulary)
 sim_words = word2vec.wv.most_similar('woman', topn=25)
 sim_words_2 = word2vec.wv.most_similar('man', topn=25)
