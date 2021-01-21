@@ -27,6 +27,8 @@ This predictor (LSTM-RNN model) is trained on the Stanford Sentiment Treebank. A
 # Further Resources
 
 AllenNLP: https://demo.allennlp.org/sentiment-analysis
+
 Real-World NLP Book: http://www.realworldnlpbook.com/
+
 Real-World NLP: https://github.com/mhagiwara/realworldnlp
 
